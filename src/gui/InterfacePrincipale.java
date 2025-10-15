@@ -169,6 +169,7 @@ public class InterfacePrincipale extends JFrame {
     }
     public void setNomInstrument(String nouveauNom){
         panneauGauche.setNomInstrument(nouveauNom);
+        controleur.renommerInstrument(nouveauNom);
     }
     public void setTextePiece(String nouveauTexte){
         panneauGauche.setTextePiece(nouveauTexte);

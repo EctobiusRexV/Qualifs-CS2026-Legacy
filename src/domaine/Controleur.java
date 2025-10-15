@@ -245,7 +245,7 @@ public class Controleur implements Observable {
             Son son = derniereToucheJouee.getSon();
             if (son.getEnCours()) {
                 addListeBoucleStop();
-                instrument.stopSon(son); //si elle est deja en cours...arreter la touche ou le timer (est-ce que plusieurs notes peuvent jouer en meme temps)?
+                //instrument.stopSon(son); //si elle est deja en cours...arreter la touche ou le timer (est-ce que plusieurs notes peuvent jouer en meme temps)?
             }
             addListeBoucleJouer();
             instrument.jouerSon(son);
@@ -330,11 +330,33 @@ public class Controleur implements Observable {
     }
 
     public void sauvegarderInstrument(File fichier) {
-        // todo
+        try {
+            FileOutputStream fos = new FileOutputStream(fichier);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            oos.writeObject(this.instrument);
+            oos.close();
+            fos.close();
+        } catch (IOException ioe){
+            System.out.println("Erreur de sauvegarde de instrument: " + ioe.getMessage());
+        }
     }
 
     public void chargerInstrument(File fichier) {
-        // todo
+        Instrument ins = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(fichier);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            ins = (Instrument) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch(IOException ioe) {
+            System.out.println("Erreur de charger de instrument: " + ioe.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.out.println("Erreur de charger de instrument: " + e.getMessage());
+        }
+
+        this.instrument = ins;
     }
 
     public void renommerInstrument(String nouveauNom) {

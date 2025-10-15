@@ -72,7 +72,8 @@ public class ZoneJeuListener extends MouseAdapter {
                 interfacePrincipale.controleur.jouerTouche(pointSouris, dimensionZoneJeu);
                 break;
             default:
-                throw new RuntimeException("should never happen");
+                interfacePrincipale.controleur.jouerTouche(pointSouris, dimensionZoneJeu);
+                break;
         }
     }
 

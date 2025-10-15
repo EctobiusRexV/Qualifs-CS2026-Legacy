@@ -28,6 +28,7 @@ public class ActionSauvegarderInstrument extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         JFileChooser choixFichier = new JFileChooser();
         choixFichier.setCurrentDirectory(null);
+
         int actionUtilisateur = choixFichier.showOpenDialog(interfacePrincipale);
         
         if (actionUtilisateur == JFileChooser.APPROVE_OPTION) {
